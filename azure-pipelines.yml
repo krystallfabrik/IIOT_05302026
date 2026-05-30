@@ -7,7 +7,7 @@ steps:
 - task: AWSCLI@1
   displayName: "Test AWS Connection"
   inputs:
-    awsCredentials: 'YOUR_SERVICE_CONNECTION_NAME' # Replace with your exact connection name
-    regionName: 'us-east-1'                         # Replace with your target AWS region
+    awsCredentials: 'test' # Replace with your exact connection name
+    regionName: 'us-east-2'                         # Replace with your target AWS region
     awsCommand: 'sts'
     awsSubCommand: 'get-caller-identity'
