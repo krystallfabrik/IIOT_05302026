@@ -21,12 +21,3 @@ resource "aws_s3_bucket" "mybucket" {
 }
 
 
-resource "aws_instance" "ec2_mqtt" {
-         ami = "ami-005e7d5b13cc4b72b" 
-         instance_type = "t4g.micro"
-
-  tags = {
-    Name = "MQTT"
-    Environment = "DEMO"
-  }
-}
