@@ -1,19 +1,13 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-trigger:
-- none
+trigger: none # Manual trigger only
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: AWSCLI@1
+  displayName: "Test AWS Connection"
+  inputs:
+    awsCredentials: 'YOUR_SERVICE_CONNECTION_NAME' # Replace with your exact connection name
+    regionName: 'us-east-1'                         # Replace with your target AWS region
+    awsCommand: 'sts'
+    awsSubCommand: 'get-caller-identity'
