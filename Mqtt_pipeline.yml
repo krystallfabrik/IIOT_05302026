@@ -22,7 +22,14 @@ stages:
         backendServiceAWS: 'Ado-aws-tfuser'
         backendAWSBucketName: 'kfabrik-645975910827-300526-bucket-hv4u8jx11xdjjm'
         backendAWSKey: 'development/terraform.tfstate'
-    - task: TerraformTask@5
+     - task: TerraformTask@5
+      name: terraformImport
+      displayName: Run Terraform Import
+      inputs:
+        provider: 'aws'
+        command: 'import'
+        environmentServiceNameAWS: 'Ado-aws-tfuser'   
+      - task: TerraformTask@5
       name: terraformPlan
       displayName: Run Terraform Plan
       inputs:
@@ -30,8 +37,8 @@ stages:
         command: 'plan'
         commandOptions: '-out tfplan'
         environmentServiceNameAWS: 'Ado-aws-tfuser'
-    # Only runs if the 'terraform plan' task has detected changes the in state.
-    - task: TerraformTask@5
+      # Only runs if the 'terraform plan' task has detected changes the in state.
+      - task: TerraformTask@5
       displayName: Run Terraform Apply
       condition: and(succeeded(), eq(variables['terraformPlan.changesPresent'], 'true'))
       inputs:
