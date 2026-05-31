@@ -4,7 +4,7 @@ variable "aws_region" {
 }
 
 variable "s3_bucket" {
-       desription = "The name of the bucket"
+       description = "The name of the bucket"
        default    = "kfabrik-645975910827-300526-bucket-hv4u8jx11xdjjm"
 }
 
