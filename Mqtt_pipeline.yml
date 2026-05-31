@@ -28,7 +28,7 @@ stages:
       name: terraformPlan
       displayName: Run Terraform Plan
       inputs:
-      provider: 'aws'
-      command: 'plan'
-      commandOptions: '-out tfplan'
-      environmentServiceNameAWS: 'Ado-aws-tfuser'
+        provider: 'aws'
+        command: 'plan'
+        commandOptions: '-out tfplan'
+        environmentServiceNameAWS: 'Ado-aws-tfuser'
