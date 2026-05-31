@@ -37,5 +37,5 @@ stages:
       inputs:
         provider: 'aws'
         command: 'destroy'
-        commandOptions: 'tfplan'
+        #commandOptions: 'tfplan'
         environmentServiceNameAWS: 'Ado-aws-tfuser'
