@@ -1,7 +1,21 @@
-- task: TerraformInstaller@1
-  displayName: 'Install Terraform'
-  inputs:
-    terraformVersion: 'latest'
+trigger: none
+
+stages:
+# In Stage 1, run Terraform init and plan
+# `your-backend-service-connection` identity only has Storage Blob Data Contributor permissions to the Storage Account Container
+# `your-plan-service-connection` identity has Reader permissions to the Azure subscription
+- stage: plan
+  displayName: 'Terraform Plan'
+  jobs:
+  - job: plan
+    displayName: 'Terraform Init and Plan'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: TerraformInstaller@1
+      displayName: 'Install Terraform'
+      inputs:
+        terraformVersion: 'latest'
 
 - task: TerraformTask@5
   displayName: Run Terraform Init
