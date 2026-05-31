@@ -74,4 +74,5 @@ resource "aws_instance" "mqttInstance" {
   tags= {
     Name = var.tag_name
   }
+}
 
