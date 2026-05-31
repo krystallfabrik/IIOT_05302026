@@ -8,11 +8,6 @@ variable "s3_bucket" {
        default    = "kfabrik-645975910827-300526-bucket-hv4u8jx11xdjjm"
 }
 
-variable "key_name" { 
-    description = " SSH keys to connect to ec2 instance" 
-    default     =  "310526key" 
-}
-
 variable "instance_type" { 
     description = "instance type for ec2" 
     default     =  "t3.micro" 
