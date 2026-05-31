@@ -36,6 +36,6 @@ stages:
       condition: and(succeeded(), eq(variables['terraformPlan.changesPresent'], 'true'))
       inputs:
         provider: 'aws'
-        command: 'apply'
+        command: 'destroy'
         commandOptions: 'tfplan'
         environmentServiceNameAWS: 'Ado-aws-tfuser'
