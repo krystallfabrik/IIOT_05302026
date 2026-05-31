@@ -1,0 +1,31 @@
+trigger: none
+
+stages:
+# In Stage 1, run Terraform init and plan
+- stage: plan
+  displayName: 'Terraform Plan'
+  jobs:
+  - job: plan
+    displayName: 'Terraform Init and Plan'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: TerraformInstaller@1
+      displayName: 'Install Terraform'
+      inputs:
+        terraformVersion: 'latest'
+    - task: TerraformTask@5
+      displayName: Run Terraform Init
+      inputs:
+        provider: 'aws'
+        command: 'init'
+        backendServiceAWS: 'Ado-aws-tfuser'
+        backendAWSBucketName: 'kfabrik-645975910827-300526-bucket-hv4u8jx11xdjjm'
+        backendAWSKey: 'development/terraform.tfstate'
+    - task: TerraformTask@5
+      displayName: Run Terraform Destroy
+      inputs:
+        provider: 'aws'
+        command: 'destroy'
+        #commandOptions: 'tfplan'
+        environmentServiceNameAWS: 'Ado-aws-tfuser'
