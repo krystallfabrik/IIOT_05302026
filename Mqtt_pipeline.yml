@@ -32,3 +32,12 @@ stages:
         command: 'plan'
         commandOptions: '-out tfplan'
         environmentServiceNameAWS: 'Ado-aws-tfuser'
+      # Only runs if the 'terraformPlan' task has detected changes the in state.
+      - task: TerraformTask@5
+        displayName: Run Terraform Apply
+        condition: and(succeeded(), eq(variables['terraformPlan.changesPresent'], 'true'))
+        inputs:
+        provider: 'aws'
+        command: 'apply'
+        commandOptions: 'tfplan'
+        environmentServiceNameAWS: 'Ado-aws-tfuser'
