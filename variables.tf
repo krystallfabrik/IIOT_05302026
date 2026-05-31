@@ -6,6 +6,7 @@ variable "aws_region" {
 variable "s3_bucket" {
        desription = "The name of the bucket"
        default    = "kfabrik-645975910827-300526-bucket-hv4u8jx11xdjjm"
+}
 
 variable "key_name" { 
     description = " SSH keys to connect to ec2 instance" 
