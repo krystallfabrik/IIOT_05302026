@@ -34,7 +34,7 @@ stages:
 - stage: apply
   displayName: 'Terraform Apply'
   jobs:
-    - job: apply
+  - job: apply
       displayName: 'Terraform Apply'
       pool:
       vmImage: 'ubuntu-latest'
