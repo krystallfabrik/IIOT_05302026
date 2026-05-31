@@ -2,8 +2,6 @@ trigger: none
 
 stages:
 # In Stage 1, run Terraform init and plan
-# `your-backend-service-connection` identity only has Storage Blob Data Contributor permissions to the Storage Account Container
-# `your-plan-service-connection` identity has Reader permissions to the Azure subscription
 - stage: plan
   displayName: 'Terraform Plan'
   jobs:
@@ -32,7 +30,16 @@ stages:
         command: 'plan'
         commandOptions: '-out tfplan'
         environmentServiceNameAWS: 'Ado-aws-tfuser'
-      # Only runs if the 'terraformPlan' task has detected changes the in state.
+
+  - stage: apply
+    displayName: 'Terraform Apply'
+    jobs:
+    - job: apply
+      displayName: 'Terraform Apply'
+      pool:
+      vmImage: 'ubuntu-latest'
+      steps:
+      # Only runs if the 'terraform plan' task has detected changes the in state.
       - task: TerraformTask@5
         displayName: Run Terraform Apply
         condition: and(succeeded(), eq(variables['terraformPlan.changesPresent'], 'true'))
