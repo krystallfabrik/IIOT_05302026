@@ -31,9 +31,9 @@ stages:
         commandOptions: '-out tfplan'
         environmentServiceNameAWS: 'Ado-aws-tfuser'
 
-  - stage: apply
-    displayName: 'Terraform Apply'
-    jobs:
+- stage: apply
+  displayName: 'Terraform Apply'
+  jobs:
     - job: apply
       displayName: 'Terraform Apply'
       pool:
