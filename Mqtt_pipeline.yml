@@ -26,9 +26,9 @@ stages:
       name: terraformImport
       displayName: Run Terraform Import
       inputs:
-      provider: 'aws'
-      command: 'import'
-      environmentServiceNameAWS: 'Ado-aws-tfuser'   
+        provider: 'aws'
+        command: 'import'
+        environmentServiceNameAWS: 'Ado-aws-tfuser'   
     - task: TerraformTask@5
       name: terraformPlan
       displayName: Run Terraform Plan
