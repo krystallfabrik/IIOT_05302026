@@ -37,7 +37,7 @@ stages:
   - job: apply
       displayName: 'Terraform Apply'
       pool:
-      vmImage: 'ubuntu-latest'
+        vmImage: 'ubuntu-latest'
       steps:
       # Only runs if the 'terraform plan' task has detected changes the in state.
       - task: TerraformTask@5
