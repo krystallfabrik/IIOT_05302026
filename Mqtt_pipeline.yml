@@ -16,21 +16,19 @@ stages:
       displayName: 'Install Terraform'
       inputs:
         terraformVersion: 'latest'
-
-- task: TerraformTask@5
-  displayName: Run Terraform Init
-  inputs:
-    provider: 'aws'
-    command: 'init'
-    backendServiceAWS: 'Ado-aws-tfuser'
-    backendAWSBucketName: 'kfabrik-645975910827-300526-bucket-hv4u8jx11xdjjm'
-    backendAWSKey: 'development/terraform.tfstate'
-
-- task: TerraformTask@5
-  name: terraformPlan
-  displayName: Run Terraform Plan
-  inputs:
-    provider: 'aws'
-    command: 'plan'
-    commandOptions: '-out tfplan'
-    environmentServiceNameAWS: 'Ado-aws-tfuser'
+    - task: TerraformTask@5
+       displayName: Run Terraform Init
+       inputs:
+       provider: 'aws'
+       command: 'init'
+       backendServiceAWS: 'Ado-aws-tfuser'
+       backendAWSBucketName: 'kfabrik-645975910827-300526-bucket-hv4u8jx11xdjjm'
+       backendAWSKey: 'development/terraform.tfstate'
+     - task: TerraformTask@5
+       name: terraformPlan
+       displayName: Run Terraform Plan
+       inputs:
+       provider: 'aws'
+       command: 'plan'
+       commandOptions: '-out tfplan'
+       environmentServiceNameAWS: 'Ado-aws-tfuser'
