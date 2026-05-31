@@ -28,7 +28,7 @@ stages:
       inputs:
         provider: 'aws'
         command: 'import'
-        environmentServiceNameAWS: 'Ado-aws-tfuser'   
+        environmentServiceNameAWS: 'Ado-aws-tfuser'
     - task: TerraformTask@5
       name: terraformPlan
       displayName: Run Terraform Plan
@@ -39,7 +39,7 @@ stages:
         environmentServiceNameAWS: 'Ado-aws-tfuser'
     # Only runs if the 'terraform plan' task has detected changes the in state.
     - task: TerraformTask@5
-     cdisplayName: Run Terraform Apply
+      displayName: Run Terraform Apply
       condition: and(succeeded(), eq(variables['terraformPlan.changesPresent'], 'true'))
       inputs:
         provider: 'aws'
