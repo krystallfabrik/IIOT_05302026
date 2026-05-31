@@ -30,7 +30,7 @@ resource "aws_s3_bucket_versioning" "kfabrik-bucket-01-versioning" {
 }
 
 resource "aws_vpc" "main" {
-  cidr_block = "172.16.0.0/16"
+  cidr_block = "10.0.0.0/16"
   instance_tenancy = "default"
   tags = {
     Name = "main"
@@ -68,7 +68,6 @@ resource "aws_security_group" "mqtt-sg" {
 resource "aws_instance" "mqttInstance" {
 
   ami           = var.ami_id
-  key_name = var.key_name
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.mqtt-sg.id]
   tags= {
