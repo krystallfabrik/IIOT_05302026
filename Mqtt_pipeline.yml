@@ -42,7 +42,7 @@ stages:
       # Only runs if the 'terraform plan' task has detected changes the in state.
     - task: TerraformTask@5
       displayName: Run Terraform Apply
-      condition: and(succeeded(), eq(variables['terraformPlan.changesPresent'], 'true'))
+      #condition: and(succeeded(), eq(variables['terraformPlan.changesPresent'], 'true'))
       inputs:
         provider: 'aws'
         command: 'apply'
