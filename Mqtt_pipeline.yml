@@ -44,7 +44,7 @@ stages:
         displayName: Run Terraform Apply
         condition: and(succeeded(), eq(variables['terraformPlan.changesPresent'], 'true'))
         inputs:
-        provider: 'aws'
-        command: 'apply'
-        commandOptions: 'tfplan'
-        environmentServiceNameAWS: 'Ado-aws-tfuser'
+          provider: 'aws'
+          command: 'apply'
+          commandOptions: 'tfplan'
+          environmentServiceNameAWS: 'Ado-aws-tfuser'
