@@ -35,16 +35,16 @@ stages:
   displayName: 'Terraform Apply'
   jobs:
   - job: apply
-      displayName: 'Terraform Apply'
-      pool:
-        vmImage: 'ubuntu-latest'
-      steps:
+    displayName: 'Terraform Apply'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
       # Only runs if the 'terraform plan' task has detected changes the in state.
-      - task: TerraformTask@5
-        displayName: Run Terraform Apply
-        condition: and(succeeded(), eq(variables['terraformPlan.changesPresent'], 'true'))
-        inputs:
-          provider: 'aws'
-          command: 'apply'
-          commandOptions: 'tfplan'
-          environmentServiceNameAWS: 'Ado-aws-tfuser'
+    - task: TerraformTask@5
+      displayName: Run Terraform Apply
+      condition: and(succeeded(), eq(variables['terraformPlan.changesPresent'], 'true'))
+      inputs:
+        provider: 'aws'
+        command: 'apply'
+        commandOptions: 'tfplan'
+        environmentServiceNameAWS: 'Ado-aws-tfuser'
