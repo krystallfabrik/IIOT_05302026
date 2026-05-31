@@ -35,6 +35,7 @@ resource "aws_vpc" "main" {
   tags = {
     Name = "main"
   }
+}
 #Create security group with firewall rules
 resource "aws_security_group" "mqtt-sg" {
   name        = var.security_group
