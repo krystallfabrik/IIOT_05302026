@@ -74,13 +74,4 @@ resource "aws_instance" "mqttInstance" {
   tags= {
     Name = var.tag_name
   }
-}
 
-# Create Elastic IP address
-resource "aws_eip" "mqttInstance" {
-  vpc      = true
-  instance = aws_instance.mqttInstance.id
-tags= {
-    Name = "mqtt_ip"
-  }
-}
