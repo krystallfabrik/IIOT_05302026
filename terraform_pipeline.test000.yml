@@ -1,0 +1,56 @@
+trigger: none
+#  branches:
+#    include:
+#      - main
+#      - develop
+#pr:
+#  branches:
+#    include:
+#      - main
+#      - develop
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Terraform_Testing
+  displayName: 'Terraform Validation and Testing'
+  jobs:
+
+    #  checkout string. Required as first property.  Configures checkout for 
+    #  the specified repository. Specify self, none, repository name, or 
+    #  repository resource. SEE: https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/steps-checkout?view=azure-pipelines
+  - job: Static_Analysis
+    displayName: 'Linting & Static Checks'
+    steps:
+    - checkout: self
+      displayName: 'Fetch Source Code'
+
+    - task: TerraformInstaller@1
+      displayName: 'Install Terraform'
+      inputs:
+        terraformVersion: 'latest'
+
+    - script: |
+        echo "##[command]Running terraform fmt..."
+        terraform fmt -check -recursive
+      displayName: 'Check Code Formatting'
+
+    - script: |
+        echo "##[command]Running terraform init..."
+        terraform init -backend=false
+        
+        echo "##[command]Running terraform validate..."
+        terraform validate
+      displayName: 'Validate Syntax & Configuration'
+
+    # TFLint is a Terrraform linter/ID sec issues 
+    - script: |
+        echo "##[command]Installing TFLint..."
+        curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash 
+        tflint --init
+        
+        echo "##[command]Running TFLint..."
+        tflint -f compact
+      displayName: 'Run TFLint Analysis'
+
