@@ -1,25 +1,4 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 6.0"
-    }
-  }
-}
 
-provider "aws" {
-  region = var.aws_region
-}
-
-resource "aws_s3_bucket" "kfabrik-bucket-01" {
-  bucket        = var.s3_bucket
-  force_destroy = true
-
-  tags = {
-    Name        = "My Bucket"
-    Environment = var.env_tag
-  }
-}
 
 resource "aws_s3_bucket_versioning" "kfabrik-bucket-01-versioning" {
   bucket = var.s3_bucket
