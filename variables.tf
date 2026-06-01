@@ -36,6 +36,6 @@ variable "acl" {
 
 variable "env_tag" {
   type        = string
-  deacription = "Tag for Environment"
+  description = "Tag for Environment"
   default     = "DEMO"
 }
