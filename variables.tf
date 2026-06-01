@@ -34,11 +34,11 @@ variable "ami_id" {
   default     = "ami-0fe18bc3cfa53a248"
 }
 
-variable "acl" {
-  description = " Defaults to private "
-  type        = string
-  default     = "private"
-}
+#variable "acl" {
+#  description = " Defaults to private "
+#  type        = string
+#  default     = "private"
+#}
 
 variable "env_tag" {
   description = "Tag for Environment"
