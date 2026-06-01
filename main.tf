@@ -74,7 +74,7 @@ resource "aws_instance" "mqttInstance" {
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.mqtt-sg.id]
   tags = {
-    Name        = var.ec2
+    Name        = var.ec2_name
     Environment = var.env_tag
 
   }
